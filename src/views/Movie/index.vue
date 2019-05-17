@@ -7,8 +7,8 @@
             <span>温州</span><i class="iconfont iconxiaosanjiaodown"></i>
           </router-link>
           <div class="hot_swtich">
-            <router-link tag="div" to="/movie/nowPlaying" class="hot_item active">正在热映</router-link>
-            <router-link tag="div" to="/movie/comingSoon" class="hot_item">即将上映</router-link tag="div">
+            <router-link tag="div" to="/movie/nowPlaying" class="hot_item">正在热映</router-link>
+            <router-link tag="div" to="/movie/comingSoon" class="hot_item">即将上映</router-link>
           </div>
           <router-link tag="div" to="/movie/Search" class="search_entry">
             <i class="iconfont iconsousuo"></i>
@@ -60,6 +60,11 @@ export default {
     border-bottom: 2px solid #ef4238;
   }
 
+  .movie_menu .city_name.router-link-active {
+    color: #ef4238;
+    border-bottom: 2px solid #ef4238;
+  }
+
   .movie_menu .hot_swtich {
     display: flex;
     height: 100%;
@@ -80,13 +85,18 @@ export default {
     border-bottom: 2px solid #ef4238;
   }
 
+  .movie_menu .hot_item.router-link-active {
+    color: #ef4238;
+    border-bottom: 2px solid #ef4238;
+  }
+
   .movie_menu .search_entry {
     margin-right: 20px;
     height: 100%;
     line-height: 45px;
   }
 
-  .movie_menu .search_entry.active {
+  .movie_menu .search_entry.router-link-active {
     color: #ef4238;
     border-bottom: 2px solid #ef4238;
   }
