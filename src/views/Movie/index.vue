@@ -45,8 +45,8 @@ export default {
     border-bottom: 1px solid #e6e6e6;
     display: flex;
     justify-content: space-between;
-    /* overflow: auto; */
-    
+    align-items: center;
+    background: white;
   }
   
   .movie_menu .city_name {
