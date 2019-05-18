@@ -111,8 +111,6 @@ export default {
 #content .movie_body {
   flex: 1;
   overflow: auto;
-  /* position: absolute;
-  left: 0; */
 }
 
 .movie_body ul {

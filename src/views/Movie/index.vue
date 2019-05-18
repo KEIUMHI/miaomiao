@@ -45,8 +45,8 @@ export default {
     border-bottom: 1px solid #e6e6e6;
     display: flex;
     justify-content: space-between;
-    /* overflow: auto; */
-    
+    align-items: center;
+    background: white;
   }
   
   .movie_menu .city_name {
@@ -96,7 +96,7 @@ export default {
     line-height: 45px;
   }
 
-  .movie_menu .search_entry.active {
+  .movie_menu .search_entry.router-link-active {
     color: #ef4238;
     border-bottom: 2px solid #ef4238;
   }
