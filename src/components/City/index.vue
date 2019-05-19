@@ -61,7 +61,62 @@
 
 <script>
 export default {
-  name: 'City'
+  name: 'City',
+  methods: {
+
+    formatCityList(cities) {
+      let cityList = [];
+      let hotList = [];
+      for (var i = 0; i < cities.length; i++){
+        var fristLetter = cities[i].py.substring(0,1).toUpperCase();
+        if (toCom(fristLetter)) {
+          createCityList();
+        } else {
+          addCityList();
+        }
+      }
+
+      cityList.sort((a,b) => {
+        if (a.index > b.index) 
+          return 1;
+        else if (a.index < b.index)
+          return -1;
+        else 
+          return 0;
+      })
+
+      function toCom(fristLetter) {
+        for (let i = 0; i < cityList.length; i++){
+          if (cityList[i].index === fristLetter)
+            return false;
+        }
+        return true;
+      }
+
+      // 向cityList结果集中增建index索引并push对应城市信息至list属性中
+      function createCityList() {
+        cityList.push( { index: fristLetter, list: [{ nm: cities[i].nm, id: cities[i].id }] } );
+      }
+
+      // 向cityList结果集List属性中push城市信息
+      function addCityList() {
+        for (let j = 0; j < cityList.length; j++) {
+          if (cityList[j].index === fristLetter)
+            cityList[j].list.push( { nm: cities[i].nm, id: cities[i].id } );
+        }
+      }
+      console.log(cityList);
+    },
+  },
+  mounted() {
+    this.axios.get('/api/cityList').then((res) => {
+      const msg = res.data.msg;
+      if (msg === 'ok'){
+        const cities = res.data.data.cities;
+        this.formatCityList(cities);
+      }
+    })
+  },
 }
 </script>
  
@@ -70,8 +125,9 @@ export default {
     margin-top: 45px;
     display: flex;
     width: 100%;
-    position: relative;
-    
+    position: absolute;
+    top: 0;
+    bottom: 0;
   }
 
   .city_body .city_list {
@@ -141,7 +197,7 @@ export default {
     width: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    iustify-content: center;
     text-align: center;
     border-left: 1px solid #e6e6e6;
   }

@@ -47,6 +47,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     background: white;
+    
   }
   
   .movie_menu .city_name {
@@ -94,6 +95,11 @@ export default {
     margin-right: 20px;
     height: 100%;
     line-height: 45px;
+  }
+
+  .movie_menu .search_entry.active {
+    color: #ef4238;
+    border-bottom: 2px solid #ef4238;
   }
 
   .movie_menu .search_entry.router-link-active {
