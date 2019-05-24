@@ -1,73 +1,13 @@
 <template>
   <div class="movie_body">
     <ul>
-      <li>
-        <div class="pic_show"><img src="/images/maozz01.jpg" alt=""></div>
+      <li v-for="item in comingList" :key="item.id">
+        <div class="pic_show"><img :src="item.img | setWH('128.180')"></div>
         <div class="info_list">
-          <h2>无名之辈</h2>
-          <p><span class="person">15611</span> 人想看</p>
-          <p>主演：陈建斌，任素汐，潘斌龙</p>
-          <p>2019-01-01</p>
-        </div>
-        <div class="btn_pre">
-          预售
-        </div>
-      </li>
-      <li>
-        <div class="pic_show"><img src="/images/maozz02.jpeg" alt=""></div>
-        <div class="info_list">
-          <h2>毒液：致命守护者</h2>
-          <p><span class="person">9.2</span></p>
-          <p>主演：汤姆·哈迪，米歇尔·威廉姆斯，里茨·阿迈德</p>
-          <p>2018-11-30</p>
-        </div>
-        <div class="btn_pre">
-          预售
-        </div>
-      </li>
-      <li>
-        <div class="pic_show"><img src="/images/maozz01.jpg" alt=""></div>
-        <div class="info_list">
-          <h2>无名之辈</h2>
-          <p><span class="person">15611</span>人想看</p>
-          <p>主演：陈建斌，任素汐，潘斌龙</p>
-          <p>2019-01-01</p>
-        </div>
-        <div class="btn_pre">
-          预售
-        </div>
-      </li>
-      <li>
-        <div class="pic_show"><img src="/images/maozz02.jpeg" alt=""></div>
-        <div class="info_list">
-          <h2>毒液：致命守护者</h2>
-          <p><span class="person">9.2</span></p>
-          <p>主演：汤姆·哈迪，米歇尔·威廉姆斯，里茨·阿迈德</p>
-          <p>2018-11-30</p>
-        </div>
-        <div class="btn_pre">
-          预售
-        </div>
-      </li>
-      <li>
-        <div class="pic_show"><img src="/images/maozz01.jpg" alt=""></div>
-        <div class="info_list">
-          <h2>无名之辈</h2>
-          <p><span class="person">15611</span>人想看</p>
-          <p>主演：陈建斌，任素汐，潘斌龙</p>
-          <p>2019-01-01</p>
-        </div>
-        <div class="btn_pre">
-          预售
-        </div>
-      </li>
-      <li>
-        <div class="pic_show"><img src="/images/maozz02.jpeg" alt=""></div>
-        <div class="info_list">
-          <h2>毒液：致命守护者</h2>
-          <p><span class="person">9.2</span></p>
-          <p>主演：汤姆·哈迪，米歇尔·威廉姆斯，里茨·阿迈德</p>
-          <p>2018-11-30</p>
+          <h2>{{item.nm}}</h2>
+          <p><span class="person">{{item.wish}}</span> 人想看</p>
+          <p>主演：{{item.star}}</p>
+          <p>{{item.rt}}</p>
         </div>
         <div class="btn_pre">
           预售
@@ -79,7 +19,21 @@
 
 <script>
 export default {
-  name: 'ComingSoon'
+  name: 'ComingSoon',
+  data() {
+    return {
+      comingList: []
+    }
+  },
+  mounted() {
+    this.axios.get('/api/movieComingList?cityId=10').then((res) => {
+      console.log(res)
+      const msg = res.data.msg
+      if (msg === 'ok') {
+        this.comingList = res.data.data.comingList
+      }
+    })
+  },
 }
 </script>
  

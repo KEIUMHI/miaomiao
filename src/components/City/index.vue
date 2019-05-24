@@ -33,6 +33,17 @@ export default {
       hotList: []
     }
   },
+  mounted() {
+    this.axios.get('/api/cityList').then((res) => {
+      const msg = res.data.msg;
+      if (msg === 'ok'){
+        const cities = res.data.data.cities;
+        var {cityList, hotList} = this.formatCityList(cities);
+        this.cityList = cityList;
+        this.hotList = hotList;
+      }
+    })
+  },
   methods: {
 
     formatCityList(cities) {
@@ -93,18 +104,7 @@ export default {
       var h2 = this.$refs.city_sort.getElementsByTagName('h2')
       this.$refs.city_sort.parentNode.scrollTop = h2[index].offsetTop;
     }
-  },
-  mounted() {
-    this.axios.get('/api/cityList').then((res) => {
-      const msg = res.data.msg;
-      if (msg === 'ok'){
-        const cities = res.data.data.cities;
-        var {cityList, hotList} = this.formatCityList(cities);
-        this.cityList = cityList;
-        this.hotList = hotList;
-      }
-    })
-  },
+  }
 }
 </script>
  
