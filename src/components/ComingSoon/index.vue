@@ -1,5 +1,6 @@
 <template>
   <div class="movie_body">
+    <Loading v-if="isLoading" />
     <Scroller>
       <ul>
         <li v-for="item in comingList" :key="item.id">
@@ -24,13 +25,15 @@ export default {
   name: 'ComingSoon',
   data() {
     return {
-      comingList: []
+      comingList: [],
+      isLoading: true
     }
   },
   mounted() {
     this.axios.get('/api/movieComingList?cityId=10').then((res) => {
       const msg = res.data.msg
       if (msg === 'ok') {
+        this.isLoading = false
         this.comingList = res.data.data.comingList
       }
     })

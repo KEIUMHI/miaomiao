@@ -1,5 +1,6 @@
 <template>
   <div class="cinema_body">
+    <Loading v-if="isLoading" />
     <Scroller>
       <ul>
         <!-- <li>
@@ -39,13 +40,15 @@ export default {
   name: 'CiList',
   data() {
     return {
-      cinemasList: []
+      cinemasList: [],
+      isLoading: true
     }
   },
   mounted() {
     this.axios.get('/api/cinemaList?cityId=10').then((res) => {
       const msg = res.data.msg
       if (msg === 'ok') {
+        this.isLoading = false
         this.cinemasList = res.data.data.cinemas
       }
     })
