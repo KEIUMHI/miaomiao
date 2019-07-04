@@ -26,9 +26,28 @@
 
 import Header from '@/components/Header';
 import TabBar from '@/components/TabBar';
+import {messageBox} from '@/components/JS'
 
 export default {
   name: 'Movie',
+  data() {
+    return {
+    }
+  },
+  mounted() {
+    messageBox({
+      title: '定位',
+      content: '温州',
+      cancel: '取消',
+      ok: '切换定位',
+      handleCancel() {
+        console.log('Cancel')
+      },
+      handleOk() {
+        console.log('Ok')
+      }
+    })
+  },
   components: {
     Header,
     TabBar
