@@ -36,7 +36,7 @@ export default {
   },
   mounted() {
     this.axios.get('/api/getLocation').then((res) => {
-      console.log(res)
+      const msg = res.data.msg
       if (msg === 'ok') {
         const nm = res.data.data.nm
         const id = res.data.data.id
