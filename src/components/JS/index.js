@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import MessageBox from './MessageBox'
 
-export let messageBox = (function() {
+export const messageBox = (function() {
     const defaults = { //默认值
         title: '',
         content: '',
@@ -28,15 +28,15 @@ export let messageBox = (function() {
             },
             methods: {
                 handleCancel() {
-                    defaults.handleCancel && defaults.handleCancel.bind(this)
+                    defaults.handleCancel && defaults.handleCancel.call(this)
                     document.body.removeChild(vm.$el)
                 },
                 handleOk() {
-                    defaults.handleOk && defaults.handleOk.bind(this)
+                    defaults.handleOk && defaults.handleOk.call(this)
                     document.body.removeChild(vm.$el)
                 }
             }
         })
         document.body.appendChild(vm.$el)
     }
-})
+})()

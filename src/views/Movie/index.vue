@@ -26,7 +26,7 @@
 
 import Header from '@/components/Header';
 import TabBar from '@/components/TabBar';
-import {messageBox} from '@/components/JS'
+import { messageBox } from '@/components/JS'
 
 export default {
   name: 'Movie',
@@ -35,16 +35,23 @@ export default {
     }
   },
   mounted() {
-    messageBox({
-      title: '定位',
-      content: '温州',
-      cancel: '取消',
-      ok: '切换定位',
-      handleCancel() {
-        console.log('Cancel')
-      },
-      handleOk() {
-        console.log('Ok')
+    this.axios.get('/api/getLocation').then((res) => {
+      console.log(res)
+      if (msg === 'ok') {
+        const nm = res.data.data.nm
+        const id = res.data.data.id
+        if (this.$store.state.city.id == id) {return}
+          messageBox({
+            title: '定位',
+            content: nm,
+            cancel: '取消',
+            ok: '切换定位',
+            handleOk() {
+              window.localStorage.setItem('nowNm', nm)
+              window.localStorage.setItem('nowId', id)
+              window.location.reload()
+            }
+          })
       }
     })
   },
