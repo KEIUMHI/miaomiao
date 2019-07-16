@@ -1,8 +1,7 @@
 export default {
   path: '/movie',
   component: () => import('@/views/Movie'),
-  children: [
-    {
+  children: [{
       path: 'city',
       component: () => import('@/components/City')
     },
@@ -17,6 +16,15 @@ export default {
     {
       path: 'search',
       component: () => import('@/components/Search')
+    },
+    {
+      path: 'detail/:movieId',
+      components: {
+        detail: () => import('@/views/Movie/detail')
+      },
+      props: {
+        detail: true
+      }
     },
     {
       path: '/movie',
