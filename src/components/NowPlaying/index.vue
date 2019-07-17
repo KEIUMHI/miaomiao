@@ -69,7 +69,7 @@
     },
     methods: {
       handleToDetail(movieId) {
-        this.$router.push(`/movie/detail/${movieId}`)
+        this.$router.push(`/movie/detail/np/${movieId}`)
       },
       handleToScroll(pos) {
         if (pos.y > 30)

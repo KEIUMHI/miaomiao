@@ -18,8 +18,19 @@ export default {
       component: () => import('@/components/Search')
     },
     {
-      path: 'detail/:movieId',
+      path: 'detail/np/:movieId',
       components: {
+        default: () => import('@/components/NowPlaying'),
+        detail: () => import('@/views/Movie/detail')
+      },
+      props: {
+        detail: true
+      }
+    },
+    {
+      path: 'detail/cs/:movieId',
+      components: {
+        default: () => import('@/components/ComingSoon'),
         detail: () => import('@/views/Movie/detail')
       },
       props: {
